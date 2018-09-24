@@ -1,0 +1,23 @@
+{
+  "name": "whattoeat",
+  "version": "1.0.0",
+  "description": "WTF should I eat?",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "CryptoBLK",
+    "JavaScript",
+    "TypeScript"
+  ],
+  "author": "jackywang@cryptoblk.io",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "ts-loader": "^5.1.1",
+    "typescript": "^3.0.3"
+  }
+}
