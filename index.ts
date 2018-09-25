@@ -1,3 +1,4 @@
+import './custom-componnets/card';
 import Axios, { AxiosResponse } from 'axios';
 
 const URL: string = `https://www.openrice.com/api/v1/pois`;
@@ -38,14 +39,20 @@ window.addEventListener(
 
         let response = await Axios.get(URL, { params: params });
         let restaurants = await getResultsFromResponse(response);
-        let s_restaurants = restaurants.map((item: any) => {
+        restaurants = restaurants.map((item: any) => {
             return {
                 name: item.name,
                 address: item.name,
-                image: item.doorPhoto.url
+                image: item.doorPhoto.urls ? (item.doorPhoto.urls.icon || item.doorPhoto.url) : item.doorPhoto.url
             }
         });
 
+        let box: HTMLElement = document.getElementById('cardbox') as HTMLElement;
+        restaurants.forEach(restaurant => {
+            let card = document.createElement('x-card');
+            card.setAttribute('src', restaurant.image);
+            box.appendChild(card);
+        })
         
     }
 )
