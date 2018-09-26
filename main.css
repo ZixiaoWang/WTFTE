@@ -2,7 +2,7 @@ html, body {
     --button-width: 200px;
     --button-height: 75px;
     --button-fontsize: 3rem;
-    --upper-height: 80%;
+    --upper-height: 90%;
 
     margin: 0px;
 }
@@ -17,7 +17,7 @@ section {
 }
 section.up {
     height: var(--upper-height);
-    background-color: pink;
+    background-color: white;
     border-bottom: 3px solid #566778;
 }
 section.down {
@@ -26,20 +26,18 @@ section.down {
 }
 .card-box {
     width: 100%;
-    padding: calc(25vw - 84px);
+    padding: calc(25vw - 85px);
     box-sizing: border-box;
     display: flex;
     flex-flow: row wrap;
 }
 
 button.btn {
-    width: var(--button-width);
     height: var(--button-height);
 
     position: absolute;
-    top: var(--upper-height); left: 50%;
+    top: var(--upper-height);
     margin-top: calc(var(--button-height) * -0.5);
-    margin-left: calc(var(--button-width) * -0.5);
 
     background-color: white;
     border-radius: 45px;
@@ -51,4 +49,12 @@ button.btn {
 button.btn:focus:active {
     border-right-width: 2px;
     border-bottom-width: 2px;
+}
+button#startbutton.btn {
+    width: var(--button-width);
+    left: 8%;
+}
+button#resetbutton.btn {
+    width: var(--button-height);
+    right: 8%;
 }

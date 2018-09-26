@@ -39,6 +39,7 @@ window.addEventListener(
 
         let response = await Axios.get(URL, { params: params });
         let restaurants = await getResultsFromResponse(response);
+
         restaurants = restaurants.map((item: any) => {
             return {
                 name: item.name,
@@ -48,11 +49,67 @@ window.addEventListener(
         });
 
         let box: HTMLElement = document.getElementById('cardbox') as HTMLElement;
+        let startbutton: HTMLButtonElement = document.getElementById('startbutton') as HTMLButtonElement;
+        let resetbutton: HTMLButtonElement = document.getElementById('resetbutton') as HTMLButtonElement;
+
+        let cards: HTMLElement[] = [];
+        let theCard: HTMLElement | null = null;
+        let isRunning: boolean = false;
+
         restaurants.forEach(restaurant => {
             let card = document.createElement('x-card');
             card.setAttribute('src', restaurant.image);
             box.appendChild(card);
-        })
+            cards.push(card);
+        });
         
+
+        startbutton.addEventListener(
+            'click',
+            (event: Event) => {
+                if(isRunning) { return ; }
+                isRunning = true;
+
+                cards.forEach(card => {
+                    card.style.opacity = '0.1';
+                })
+
+                let restaurantIndex: number = Math.floor( cards.length * Math.random() );
+                let count: number = 30;
+                let interval: number = setInterval(() => {
+
+                    if(count === 0) {
+                        if(theCard) {
+                            theCard.style.opacity = '0.1';
+                        }
+                        theCard = cards[restaurantIndex];
+                        theCard.style.opacity = '1.0';
+
+                        clearInterval(interval);
+                        isRunning = false;
+                    } else {
+                        count --;
+                        if(theCard) {
+                            theCard.style.opacity = '0.1';
+                        }
+                        theCard = cards[Math.floor(cards.length * Math.random())];
+                        theCard.style.opacity = '1.0';
+                    }
+
+                }, 75);
+            }
+        );
+
+        resetbutton.addEventListener(
+            'click',
+            (event) => {
+                cards.forEach(card => {
+                    if(isRunning) { return void 0; }
+                    card.style.opacity = '1.0';
+                    theCard = null;
+                })
+            }
+        );
+
     }
 )

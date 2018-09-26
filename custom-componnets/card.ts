@@ -2,19 +2,19 @@
     const templateHTML: string = `
         <style>
             :host {
-                --card-size: 80px;
-                --border-width: 3px;
+                --card-size: 76px;
+                --border-width: 2px;
 
                 display: inline-block;
                 margin: 4px;
+                border: var(--border-width) solid transparent;
+                box-sizing: border-box;
             }
             .card-container {
                 width: var(--card-size);
                 height: var(--card-size);
 
                 background-color: skyblue;
-                border-bottom: var(--border-width) solid #566778;
-                border-right: var(--border-width) solid #566778;
                 border-radius: 4px;
                 box-sizing: border-box;
 
