@@ -72,5 +72,6 @@
         }
     }
 
+    (window as any).XCardElement = XCardElement;
     customElements.define('x-card', XCardElement)
 })()

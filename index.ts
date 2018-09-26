@@ -38,27 +38,49 @@ window.addEventListener(
     async (event: Event) => {
 
         let response = await Axios.get(URL, { params: params });
-        let restaurants = await getResultsFromResponse(response);
+        let allRestaurants = await getResultsFromResponse(response);
 
-        restaurants = restaurants.map((item: any) => {
+        let restaurants = allRestaurants.map((item: any) => {
             return {
                 name: item.name,
-                address: item.name,
-                image: item.doorPhoto.urls ? (item.doorPhoto.urls.icon || item.doorPhoto.url) : item.doorPhoto.url
+                address: item.address,
+                image: item.doorPhoto.urls ? (item.doorPhoto.urls.icon || item.doorPhoto.url) : item.doorPhoto.url,
+                url: item.shortenUrl
             }
         });
 
+        let container: HTMLElement = document.querySelector('.home-page') as HTMLElement;
         let box: HTMLElement = document.getElementById('cardbox') as HTMLElement;
+
+        let dpage: HTMLDivElement = document.getElementById('dpage') as HTMLDivElement;
+        let dimg: HTMLDivElement = document.getElementById('dimg') as HTMLDivElement;
+        let dname: HTMLDivElement = document.getElementById('dname') as HTMLDivElement;
+        let daddress: HTMLDivElement = document.getElementById('daddress') as HTMLDivElement;
+        let dlink: HTMLAnchorElement = document.getElementById('dlink') as HTMLAnchorElement;
+
         let startbutton: HTMLButtonElement = document.getElementById('startbutton') as HTMLButtonElement;
         let resetbutton: HTMLButtonElement = document.getElementById('resetbutton') as HTMLButtonElement;
+        let dclose: HTMLButtonElement = document.getElementById('dclose') as HTMLButtonElement;
 
         let cards: HTMLElement[] = [];
         let theCard: HTMLElement | null = null;
         let isRunning: boolean = false;
 
-        restaurants.forEach(restaurant => {
+        function checkDetail(card: any, container: HTMLElement) {
+        
+            dimg.style.backgroundImage = `url(${ card.image })`;
+            dname.innerText = card.name;
+            daddress.innerText = card.address;
+            dlink.href = card.url;
+        
+            dpage.style.top = '100px';
+            container.style.opacity = '0.5';
+        }
+
+        restaurants.forEach((restaurant, index: number) => {
             let card = document.createElement('x-card');
             card.setAttribute('src', restaurant.image);
+            card.setAttribute('index', index.toString());
             box.appendChild(card);
             cards.push(card);
         });
@@ -110,6 +132,32 @@ window.addEventListener(
                 })
             }
         );
+
+        box.addEventListener(
+            'click',
+            (event) => {
+                if(theCard && theCard === event.target) {
+                    let cardindex:number = parseInt( theCard.getAttribute('index') as string );
+                    checkDetail(restaurants[cardindex], container);
+                } else {
+                    let element: HTMLElement = event.target as HTMLElement;
+                    if(element.tagName === 'X-CARD') {
+                        let cardindex:number = parseInt( element.getAttribute('index') as string );
+                        checkDetail(restaurants[cardindex], container);
+                    } else {
+                        return void 0;
+                    }
+                }
+            }
+        );
+
+        dclose.addEventListener(
+            'click',
+            (event) => {
+                container.style.opacity = '1.0';
+                dpage.style.top = '100vh';
+            }
+        )
 
     }
 )
