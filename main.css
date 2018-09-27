@@ -12,6 +12,8 @@ html, body {
     height: 100vh;
     overflow: hidden;
     background-color: black;
+
+    font-family: sans-serif;
 }
 .home-page {
     width: 100vw;
@@ -122,6 +124,7 @@ button#resetbutton.btn {
     color: white;
     font-size: 16px;
     text-align: center;
+    text-decoration: none;
 }
 .more-detail:active:hover {
     background-color: var(--openrice-active-color);
