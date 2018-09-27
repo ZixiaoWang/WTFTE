@@ -1,4 +1,4 @@
-const CACHE = 'WTFTE_v1';
+const CACHE = 'WTFTE_v2';
 
 const CACHE_URLS = [
     './',
