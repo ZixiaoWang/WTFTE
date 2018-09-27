@@ -5,7 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="skyblue">
-    <link rel="stylesheet" href="main.css">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#7ec0ee">
+    <meta name="apple-mobile-web-app-title" content="WTFTE">
+    <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+
+    <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#7ec0ee">
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="/main.css">
     <title>WTFTE</title>
 </head>
 <body>
@@ -28,6 +38,11 @@
         <a class="more-detail" target="_blank" id="dlink">Openrice it</a>
         <button class="detail-close" id="dclose">&times;</button>
     </div>
+    <script>
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js');
+        }
+    </script>
     <script src="index.js"></script>
 </body>
 </html>
