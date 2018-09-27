@@ -23,7 +23,7 @@ async function getResultsFromResponse(response: AxiosResponse) {
             return Promise.resolve(results);
         } else {
             let list: any[] = await accumulator;
-            let response = await Axios.get(URL, { params: { ...params, page: value.page } }).catch(err => { return Axios.get('results.json') });
+            let response = await Axios.get(URL, { params: { ...params, page: value.page } }).catch(err => { return Axios.get('preload-results/results2.json') });
             let resultSet: any[] = response.data.searchResult.paginationResult.results;
             fullResultsList = list.concat(resultSet);
             return Promise.resolve(fullResultsList);
@@ -37,7 +37,7 @@ window.addEventListener(
     'load',
     async (event: Event) => {
 
-        let response = await Axios.get(URL, { params: params }).catch(err => { return Axios.get('results.json') });
+        let response = await Axios.get(URL, { params: params }).catch(err => { return Axios.get('preload-results/results.json') });
         let allRestaurants = await getResultsFromResponse(response);
 
         let restaurants = allRestaurants.map((item: any) => {
