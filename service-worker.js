@@ -1,4 +1,4 @@
-const CACHE = 'WTFTE_v3';
+const CACHE = 'WTFTE_v4';
 
 const CACHE_URLS = [
     './',
@@ -6,6 +6,14 @@ const CACHE_URLS = [
     './main.css',
     './fonts/Minecrafter.Alt.ttf',
     './img/WTF-TO-EAT.png',
+    './img/icons/icon-72x72.png',
+    './img/icons/icon-96x96.png',
+    './img/icons/icon-128x128.png',
+    './img/icons/icon-144x144.png',
+    './img/icons/icon-152x152.png',
+    './img/icons/icon-192x192.png',
+    './img/icons/icon-384x384.png',
+    './img/icons/icon-512x512.png',
     './index.js',
     './preload-results/results.json',
     './preload-results/results2.json'
