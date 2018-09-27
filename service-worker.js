@@ -1,14 +1,14 @@
-const CACHE = 'WTFTE_v2';
+const CACHE = 'WTFTE_v3';
 
 const CACHE_URLS = [
     './',
-    'index.html',
-    'main.css',
-    'fonts/Minecrafter.Alt.ttf',
-    'img/WTF-TO-EAT.png',
-    'index.js',
-    'preload-results/results.json',
-    'preload-results/results2.json'
+    './index.html',
+    './main.css',
+    './fonts/Minecrafter.Alt.ttf',
+    './img/WTF-TO-EAT.png',
+    './index.js',
+    './preload-results/results.json',
+    './preload-results/results2.json'
 ];
 
 
@@ -41,15 +41,9 @@ self.addEventListener('fetch', event => {
             caches.match(event.request).then(cachedResponse => {
                 if (cachedResponse) {
                     return cachedResponse;
+                } else {
+                    return fetch(event.request);
                 }
-
-                return caches.open(RUNTIME).then(cache => {
-                    return fetch(event.request).then(response => {
-                        return cache.put(event.request, response.clone()).then(() => {
-                            return response;
-                        });
-                    });
-                });
             })
         );
     }
